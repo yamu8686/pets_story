@@ -1,2 +1,7 @@
-<h1>Public::PostImages#show</h1>
-<p>Find me in app/views/public/post_images/show.html.erb</p>
+<div>
+  <p>動物名: <%= @post_image.name %></p>
+  <p>説明: <%= @post_image.description %></p>
+  <p>投稿画像: <%= image_tag @post_image.get_image %></p>
+  <p>ユーザーネーム: <%= @post_image.user.name %></p>
+  <p>投稿日: <%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+</div>
