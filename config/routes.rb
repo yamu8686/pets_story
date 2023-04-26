@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'post_images/new'
-    get 'post_images/index'
-    get 'post_images/show'
-    get 'post_images/edit'
+    resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
   root to: 'homes#top'
   get "/about" => "homes#about", as: "about"

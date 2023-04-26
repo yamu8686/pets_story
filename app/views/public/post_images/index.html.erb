@@ -1,2 +1,8 @@
-<h1>Public::PostImages#index</h1>
-<p>Find me in app/views/public/post_images/index.html.erb</p>
+<% @post_images.each do |post_image| %>
+<div>
+  <%= image_tag post_image.get_image %>
+  <p>投稿ユーザー画像: <%= image_tag post_image.get_image %></p>
+  <p>動物名: <%= post_image.name %></p>
+  <p>説明: <%= post_image.description %></p>
+</div>
+<% end %>
