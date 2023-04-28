@@ -28,6 +28,7 @@ class Public::SessionsController < Devise::SessionsController
     return if !@user
     # [処理内容２]  取得したアカウントのパスワードと入力されたパスワードが一致しているか判別
     if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
+      flash[:notice] = "退会済みです。再度ご登録お願いいたします"
       # [処理内容３]
       redirect_to new_user_session_path
 
@@ -40,6 +41,10 @@ class Public::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(resource)
     root_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:name])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
