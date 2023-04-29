@@ -15,5 +15,6 @@
   <p>動物名：<%= post_image.name %></p>
   <p>説明：<%= post_image.description %></p>
   <p>ユーザーネーム：<%= post_image.user.name %></p>
+  <p><%= link_to "#{post_image.post_comments.count} コメント", public_post_image_path(post_image.id) %></p>
 </div>
 <% end %>
