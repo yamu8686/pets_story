@@ -18,7 +18,7 @@
   <% end %>
 </div>
 <div>
-  <%= form_with model: [@post_image, @post_comment] do |f| %>
+  <%= form_with model: [@post_image, @post_comment], url: public_post_images_path, method: :post do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
