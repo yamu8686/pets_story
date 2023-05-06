@@ -1,5 +1,5 @@
 <h2>投稿編集</h2>
-<%= form_with model: @post_image, url: public_post_images_path(@post_image.id) do |f| %>
+<%= form_with model: @post_image, url: public_post_image_path(@post_image.id) do |f| %>
   <h4>画像</h4>
     <%= f.file_field :image, accept: "image/*" %>
   <h4>名前</h4>
