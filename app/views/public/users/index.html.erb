@@ -1,2 +1,14 @@
-<h1>Public::Users#index</h1>
-<p>Find me in app/views/public/users/index.html.erb</p>
+<div>
+  <h2>ユーザー一覧</h2>
+  <% @users.each do |user| %>
+  <div>
+    <p><%= image_tag user.get_profile_image(100,100) %></p>
+    <p>
+      <%= link_to public_user_path(user.id) do %>
+      <%= user.name %>
+      <% end %>
+    </p>
+    <%= render "public/users/relationships", user: @user %>
+  </div>
+  <% end %>
+</div>

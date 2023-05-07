@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit]
   def index
+    @users = User.all
   end
 
   def show

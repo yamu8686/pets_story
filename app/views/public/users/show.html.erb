@@ -6,6 +6,8 @@
   <% end %>
 </div>
 
+<%= render "public/users/relationships", user: @user %>
+
 <% @post_images.each do |post_image| %>
 <div>
   <%= link_to public_post_image_path(post_image.id) do %>
