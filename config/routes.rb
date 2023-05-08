@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   }
 
   namespace :public do
-    resources :users, only: [:index, :show, :edit, :update]
-
-    resources :relationships, only: [:create, :destroy]
+    resources :users, only: [:index, :show, :edit, :update]do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
 
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
