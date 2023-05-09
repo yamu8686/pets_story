@@ -22,6 +22,9 @@
           <%= link_to 'マイページ', public_user_path(current_user.id) %>
         </li>
         <li>
+          <%= link_to 'ユーザー一覧', public_users_path %>
+        </li>
+        <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
