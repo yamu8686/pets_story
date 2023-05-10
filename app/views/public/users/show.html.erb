@@ -8,6 +8,17 @@
 
 <%= render "public/relationships/relationships", user: @user %>
 
+<% unless @user.id == current_user.id %>
+  <% if @is_room == true %>
+    <%= link_to 'メッセージへ', public_room_path(@room_id) %>
+  <% else %>
+    <%= form_with model: @room,  url: public_rooms_path, method: :post do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <%= f.submit "メッセージを送る" %>
+  <% end %>
+
 <% @post_images.each do |post_image| %>
 <div>
   <%= link_to public_post_image_path(post_image.id) do %>
