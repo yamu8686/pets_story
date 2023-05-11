@@ -11,7 +11,7 @@ class Public::UsersController < ApplicationController
     @another_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
       @current_entry.each do |current|
-        @anothr_entry.each do |another|
+        @another_entry.each do |another|
           if current.room_id == another.room_id
             @isRoom = true
             @roomId = current.room_id

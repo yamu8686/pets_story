@@ -1,7 +1,22 @@
-<h2><%= user.name %>さんとのメッセージ</h2>
+<% @entries.each do |e| %>
+  <h2><%= e.user.name %>さんとのメッセージ</h2>
+<% end %>
 <div>
-  <% @messages.each do |m| %>
-    <% if m.user_id == current_user.id %>
-    
-      <% 
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <% if m.user_id == current_user.id %>
+        <%= m.body %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h3>メッセージはまだありません</h3>
+  <% end %>
 </div>
+
+<%= form_with model: @message, url: public_messages_path, method: :post do |f| %>
+  <%= f.text_field :body, placeholder: "メッセージを入力してください" %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "ユーザー一覧に戻る", public_users_path %>
