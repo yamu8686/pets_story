@@ -12,30 +12,60 @@
   </head>
 
   <body>
-    <header>
-      <h1>Pets_Story</h1>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to '投稿ファーム', new_public_post_image_path %>
-        </li>
-        <li>
-          <%= link_to 'マイページ', public_user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to 'ユーザー一覧', public_users_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
-    </header>
-    <%= yield %>
+    <div class="background" style="min-height:100vh; box-sizzing: border-box;">
+      <div class="color">
+        <header>
+        <nav class="navbar navbar-expend-lg navbar-dark bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="/">
+              <h1>Pets_Story</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse show" id="navbarNavDropdown"style>
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li>
+                    <%= link_to '投稿ファーム', new_public_post_image_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'マイページ', public_user_path(current_user.id) %>
+                  </li>
+                  <li>
+                    <%= link_to 'ユーザー一覧', public_users_path %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "新規登録", new_user_registration_path %>
+                  </li>
+                  <li>
+                    <%= link_to "ログイン", new_user_session_path %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
+    <footer class="footer mt-auto py-3 bg-primary">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="mx-auto">
+            <p class="text-muted">©2023 Asami Inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+  </div>
   </body>
 </html>
