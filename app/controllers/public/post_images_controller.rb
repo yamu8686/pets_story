@@ -14,6 +14,7 @@ class Public::PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all
+    @posts = PostImage.find(favorite.group(:post_image_id).order('count(post_image_id) desc').limit(3).pluck(:post_image_id))
   end
 
   def show
