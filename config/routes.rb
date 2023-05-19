@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
+      resources :reposts, only: [:create, :destroy]
     end
 
     resources :messages, only: [:create]

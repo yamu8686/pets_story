@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_09_080940) do
+ActiveRecord::Schema.define(version: 2023_05_19_075258) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(version: 2023_05_09_080940) do
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   end
 
+  create_table "reposts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_image_id"], name: "index_reposts_on_post_image_id"
+    t.index ["user_id"], name: "index_reposts_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -129,4 +138,6 @@ ActiveRecord::Schema.define(version: 2023_05_09_080940) do
   add_foreign_key "entries", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "reposts", "post_images"
+  add_foreign_key "reposts", "users"
 end

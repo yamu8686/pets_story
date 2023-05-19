@@ -5,6 +5,7 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
+  has_many :reposts, dependent: :destroy
 
   def get_image(width, height)
     unless image.attached?
