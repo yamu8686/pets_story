@@ -1,7 +1,7 @@
 <% @post_images.each do |post_image| %>
 <div>
-  <%= link_to public_post_image_path(post_image.id) do %>
-    <%= image_tag post_image.get_image %>
+  <%= link_to public_post_image_path(post_image.id), style: "display:block"  do %>
+    <%= image_tag post_image.get_image(400,200), class: "img-fluid" %>
   <% end %>
 
   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
