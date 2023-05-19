@@ -1,4 +1,4 @@
-<% post_images.each do |post_image| %>
+<% @post_images.each do |post_image| %>
 <div>
   <%= link_to public_post_image_path(post_image.id) do %>
     <%= image_tag post_image.get_image %>
@@ -7,5 +7,18 @@
   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
   <p>動物名: <%= post_image.name %></p>
   <p>説明: <%= post_image.description %></p>
+  <% if post_image.favorited_by?(current_user) %>
+    <p>
+      <%= link_to public_post_image_favorites_path(post_image), method: :delete do %>
+        ♥<%= post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+   <% else %>
+    <p>
+      <%= link_to public_post_image_favorites_path(post_image), method: :post do %>
+        ♡<%= post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
   <p><%= link_to "#{post_image.post_comments.count} コメント", public_post_image_path(post_image.id) %></p>
 <% end %>
