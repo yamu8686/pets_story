@@ -44,4 +44,8 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def reposted?(post_image_id)
+    self.reposts.where(post_image_id: post_image_id).exists?
+  end
 end

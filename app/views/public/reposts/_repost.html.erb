@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <% unless post_image.user.id == current_user.id %>
+    <% if current_user.reposted?(post_image.id) %>
+      <%= link_to "リポストを取り消す", public_post_image_repost_path(post_image.id), method: :delete do %>
+        <%= post_image.reposts.length %>
+    <% else %>
+      <%= link_to "リポストする", public_post_image_reposts_path, method: :post do %>
+        <%= post_image.reposts.length %>
+    <% end %>
+  <% else %>
+    <%= post_image.reposts.length %>
+  <% end %>
+<% else %>
+  <%= post_image.repost.length %>
+<% end %>
