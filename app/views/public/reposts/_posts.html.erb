@@ -1,0 +1,12 @@
+<% post_images.each_with_index.reverse_each do |post_image, i| %>
+  <% if post_image.has_attribute?(:repost_user_id) %>
+    <% if post_image.repost_user_id.present? %>
+      <%= link_to post_image.repost_user_name, "public_post_image_reposts_path(post_image.repost_user_id)", "data-turbolinks": false %>
+      さんがリポスト
+    <% end %>
+  <% end %>
+
+  <%= link_to public_user_path(post_image.user.id), "data-turbolinks": false do %>
+    <%= image_tag post_image.user.get_profile_image(100,100) %>
+  <% end %>
+<% end %>

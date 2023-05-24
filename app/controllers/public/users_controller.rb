@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit]
+  before_action :set_user
+
   def index
     @users = User.all
   end
@@ -39,5 +41,9 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
