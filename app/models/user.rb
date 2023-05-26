@@ -58,4 +58,8 @@ class User < ApplicationRecord
             .preload(:user, :review, :comments, :favorites, :reposts)
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN post_images.created_at ELSE reposts.created_at END"))
   end
+
+  def followings_with_userself
+    User.where(id: self.followings.pluck(:id)).or(User.where(id: self.id))
+  end
 end

@@ -15,6 +15,12 @@ class Public::PostImagesController < ApplicationController
   def index
     #@post_images = PostImage.all
     @post_images = PostImage.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    if user_signed_in?
+      @user = User.find(current_user.id)
+      @post_images = @user.followings_post_images_with_reposts
+    else
+      @post_images = PostImage.with_attached_images.preload(:user, :review, :comments, :favorites)
+    end
   end
 
   def show
