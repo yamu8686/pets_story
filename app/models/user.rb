@@ -49,13 +49,24 @@ class User < ApplicationRecord
     self.reposts.where(post_image_id: post_image_id).exists?
   end
 
-  def post_with_reposts
+  def post_images_with_reposts
     relation = PostImage.joins("LEFT OUTER JOIN reposts ON post_images.id = reposts.post_image_id AND reposts.user_id = #{self.id}")
                         .select("post_images.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
     relation.where(user_id: self.id)
             .or(relation.where("reposts.user_id = ?", self.id))
-            .with_attached_images
-            .preload(:user, :review, :comments, :favorites, :reposts)
+            .with_attached_image
+            .preload(:user, :comments, :favorites, :reposts)
+            .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN post_images.created_at ELSE reposts.created_at END"))
+  end
+
+  def followings_post_images_with_reposts
+    relation = PostImage.joins("LEFT OUTER JOIN reposts ON post_images.id = reposts.post_image_id AND (reposts.user_id = #{self.id} OR reposts.user_id IN (SELECT follow_id FROM relationships WHERE user_id = #{self.id}))")
+                        .select("post_images.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+    relation.where(user_id: self.followings_with_userself.pluck(:id))
+            .or(relation.where(id: Repost.where(user_id: self.followings_with_userself.pluck(:id)).distinct.pluck(:post_id)))
+            .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_image_id = sub.post_image_id AND reposts.created_at < sub.created_at")
+            .with_attached_image
+            .preload(:user, :comments, :favorites, :reposts)
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN post_images.created_at ELSE reposts.created_at END"))
   end
 
