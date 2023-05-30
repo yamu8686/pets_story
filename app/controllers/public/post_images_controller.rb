@@ -19,7 +19,7 @@ class Public::PostImagesController < ApplicationController
       @user = User.find(current_user.id)
       @post_images = @user.followings_post_images_with_reposts
     else
-      @post_images = PostImage.with_attached_images.preload(:user, :review, :comments, :favorites)
+      @post_images = PostImage.with_attached_images.preload(:user, :comments, :favorites)
     end
   end
 

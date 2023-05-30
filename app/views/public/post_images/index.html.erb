@@ -3,11 +3,13 @@
   <%= link_to public_post_image_path(post_image.id), style: "display:block"  do %>
     <%= image_tag post_image.get_image(400,200), class: "img-fluid" %>
   <% end %>
-
+</div>
   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
   <p>動物名: <%= post_image.name %></p>
   <p>説明: <%= post_image.description %></p>
   <% if post_image.favorited_by?(current_user) %>
+
+  <%= render "public/reposts/repost", post_image: @post_image %>
     <p>
       <%= link_to public_post_image_favorites_path(post_image), method: :delete do %>
         ♥<%= post_image.favorites.count %> いいね

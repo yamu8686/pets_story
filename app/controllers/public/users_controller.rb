@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :edit]
-  before_action :set_user
 
   def index
     @users = User.all
@@ -8,7 +7,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images
+    @post_images = @user.post_images_with_reposts
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -41,9 +40,5 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
   end
 end
