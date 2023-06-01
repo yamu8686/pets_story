@@ -1,7 +1,7 @@
 <div>
   <p>動物名: <%= @post_image.name %></p>
   <p>説明: <%= @post_image.description %></p>
-  <p>投稿画像: <%= link_to public_post_image_path(post_image.id), style: "display:block" do %>
+  <p>投稿画像: <%= link_to public_post_image_path(@post_image.id), style: "display:block" do %>
                  <%= image_tag @post_image.get_image(400,200), class: "img-fluid" %>
                <% end %></p>
   <p>ユーザーネーム: <%= @post_image.user.name %></p>

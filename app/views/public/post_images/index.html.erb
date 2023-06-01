@@ -9,7 +9,7 @@
   <p>説明: <%= post_image.description %></p>
   <% if post_image.favorited_by?(current_user) %>
 
-  <%= render "public/reposts/repost", post_image: @post_image %>
+  <%#= render "public/reposts/repost", post_image: @post_image %>
     <p>
       <%= link_to public_post_image_favorites_path(post_image), method: :delete do %>
         ♥<%= post_image.favorites.count %> いいね
