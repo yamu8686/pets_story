@@ -163,3 +163,25 @@ header {
 .about-img {
   width: 84%;
 }
+
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.form-heading {
+  font-weight: 300;
+  margin: 60px 0 20px;
+  font-size: 48px;
+  color: #bcc8d4;
+}
+
+.form-body {
+  padding: 30px;
+}
+
+.form-error {
+  color: #ff4d75;
+}
