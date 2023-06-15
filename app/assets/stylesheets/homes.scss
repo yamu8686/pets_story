@@ -233,3 +233,25 @@ form-textarea {
   border-radius: 0 0 2px 2px;
   font-size: 14px;
 }
+
+.social i {
+  color:black;
+}
+
+@media screen and (max-width:1024px) {
+  .social i {
+    color: green;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .social i {
+    color: red;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .social i {
+    color: blue;
+  }
+}
