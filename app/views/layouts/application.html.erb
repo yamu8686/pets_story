@@ -26,27 +26,27 @@
             <div class="navbar-collapse collapse show" id="navbarNavDropdown"style>
               <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
-                  <li>
-                    <%= link_to '投稿ファーム', new_public_post_image_path %>
+                  <li class="nav-item">
+                    <%= link_to '投稿ファーム', new_public_post_image_path, class: "nav-link text-light mr-5" %>
                   </li>
-                  <li>
-                    <%= link_to '投稿一覧', public_post_images_path %>
+                  <li class="nav-item">
+                    <%= link_to '投稿一覧', public_post_images_path, class: "nav-link text-light mr-5" %>
                   </li>
-                  <li>
-                    <%= link_to 'マイページ', public_user_path(current_user.id) %>
+                  <li class="nav-item">
+                    <%= link_to 'マイページ', public_user_path(current_user.id), class: "nav-link text-light mr-5" %>
                   </li>
-                  <li>
-                    <%= link_to 'ユーザー一覧', public_users_path %>
+                  <li class="nav-item">
+                    <%= link_to 'ユーザー一覧', public_users_path, class: "nav-link text-light mr-5" %>
                   </li>
-                  <li>
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light mr-5" %>
                   </li>
                 <% else %>
-                  <li>
-                    <%= link_to "新規登録", new_user_registration_path %>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light mr-5" %>
                   </li>
-                  <li>
-                    <%= link_to "ログイン", new_user_session_path %>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light mr-5" %>
                   </li>
                 <% end %>
               </ul>
