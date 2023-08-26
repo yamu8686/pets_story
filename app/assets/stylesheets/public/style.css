@@ -30,3 +30,7 @@ header {
   top: 22px;
   right: 22px;
 }
+
+header .heading {
+  font-size: 32px;
+}
