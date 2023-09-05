@@ -54,3 +54,9 @@ header .heading {
   background-size: cover;
   background-position: center;
 }
+
+.main-visual-content {
+  width: 40%;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
