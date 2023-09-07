@@ -60,3 +60,7 @@ header .heading {
   height: 300px;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.main-visual-text {
+  color: #fff;
+}
